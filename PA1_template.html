@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Reproducible Research: Peer Assessment 1</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Reproducible Research: Peer Assessment 1</h1>
+</header>
+<h2 id="loading-and-preprocessing-the-data">Loading and preprocessing
+the data</h2>
+<p>cls = c(“integer”, “character”, “integer”) df &lt;-
+read.csv(“activity.csv”, head=TRUE, colClasses=cls, na.strings=“NA”)
+head(df) hist(x=dailysum, col=“red”, breaks=20, xlab=“Daily total
+steps”, ylab=“Frequency”, main=“The distribution of daily total (missing
+data ignored)”) dailysum &lt;- tapply(df_ign<span
+class="math inline"><em>s</em><em>t</em><em>e</em><em>p</em><em>s</em>, <em>d</em><em>f</em><sub><em>i</em></sub><em>g</em><em>n</em></span>date,
+sum, na.rm=TRUE, simplify=T) dailysum &lt;-
+dailysum[!is.na(dailysum)]</p>
+<h2 id="what-is-mean-total-number-of-steps-taken-per-day">What is mean
+total number of steps taken per day?</h2>
+<p>mean(dailysum) ## 10765 steps</p>
+<h2 id="what-is-the-average-daily-activity-pattern">What is the average
+daily activity pattern?</h2>
+<p>int_avg &lt;- tapply(df_ign<span
+class="math inline"><em>s</em><em>t</em><em>e</em><em>p</em><em>s</em>, <em>d</em><em>f</em><sub><em>i</em></sub><em>g</em><em>n</em></span>interval,
+mean, na.rm=TRUE, simplify=T) df_ia &lt;-
+data.frame(interval=as.integer(names(int_avg)), avg=int_avg)</p>
+<p>with(df_ia, plot(interval, avg, type=“l”, xlab=“5-minute intervals”,
+ylab=“average steps in the interval across all days”)) max_steps &lt;-
+max(df_ia<span
+class="math inline"><em>a</em><em>v</em><em>g</em>)<em>d</em><em>f</em><sub><em>i</em></sub><em>a</em>[<em>d</em><em>f</em><sub><em>i</em></sub><em>a</em></span>avg
+== max_steps, ] ## interval 835 contains max no of steps 206</p>
+<h2 id="imputing-missing-values">Imputing missing values</h2>
+<p>df_impute &lt;- df ndx &lt;- is.na(df_impute<span
+class="math inline"><em>s</em><em>t</em><em>e</em><em>p</em><em>s</em>)<em>i</em><em>n</em><em>t</em><sub><em>a</em></sub><em>v</em><em>g</em> &lt;  − <em>t</em><em>a</em><em>p</em><em>p</em><em>l</em><em>y</em>(<em>d</em><em>f</em><sub><em>i</em></sub><em>g</em><em>n</em></span>steps,
+df_ign<span
+class="math inline"><em>i</em><em>n</em><em>t</em><em>e</em><em>r</em><em>v</em><em>a</em><em>l</em>, <em>m</em><em>e</em><em>a</em><em>n</em>, <em>n</em><em>a</em>.<em>r</em><em>m</em> = <em>T</em><em>R</em><em>U</em><em>E</em>, <em>s</em><em>i</em><em>m</em><em>p</em><em>l</em><em>i</em><em>f</em><em>y</em> = <em>T</em>)<em>d</em><em>f</em><sub><em>i</em></sub><em>m</em><em>p</em><em>u</em><em>t</em><em>e</em></span>steps[ndx]
+&lt;- int_avg[as.character(df_impute<span
+class="math inline"><em>i</em><em>n</em><em>t</em><em>e</em><em>r</em><em>v</em><em>a</em><em>l</em>[<em>n</em><em>d</em><em>x</em>])]<em>n</em><em>e</em><em>w</em><sub><em>d</em></sub><em>a</em><em>i</em><em>l</em><em>y</em><em>s</em><em>u</em><em>m</em> &lt;  − <em>t</em><em>a</em><em>p</em><em>p</em><em>l</em><em>y</em>(<em>d</em><em>f</em><sub><em>i</em></sub><em>m</em><em>p</em><em>u</em><em>t</em><em>e</em></span>steps,
+df_impute$date, sum, na.rm=TRUE, simplify=T)</p>
+<p>hist(x=new_dailysum, col=“red”, breaks=20, xlab=“daily steps”,
+ylab=“frequency”, main=“The distribution of daily total (with missing
+data imputed)”) mean(new_dailysum) ## 10766</p>
+<h2
+id="are-there-differences-in-activity-patterns-between-weekdays-and-weekends">Are
+there differences in activity patterns between weekdays and
+weekends?</h2>
+<p>is_weekday &lt;- function(d) { wd &lt;- weekdays(d) ifelse (wd ==
+“Saturday” | wd == “Sunday”, “weekend”, “weekday”) }</p>
+<p>wx &lt;- sapply(df_impute<span
+class="math inline"><em>d</em><em>a</em><em>t</em><em>e</em>, <em>i</em><em>s</em><sub><em>w</em></sub><em>e</em><em>e</em><em>k</em><em>d</em><em>a</em><em>y</em>)<em>d</em><em>f</em><sub><em>i</em></sub><em>m</em><em>p</em><em>u</em><em>t</em><em>e</em></span>wk
+&lt;- as.factor(wx) head(df_impute wk_df &lt;- aggregate(steps ~
+wk+interval, data=df_impute, FUN=mean)</p>
+<p>library(lattice) xyplot(steps ~ interval | factor(wk), layout = c(1,
+2), xlab=“Interval”, ylab=“Number of steps”, type=“l”, lty=1,
+data=wk_df)</p>
+</body>
+</html>
